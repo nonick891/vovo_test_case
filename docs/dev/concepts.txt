@@ -1,0 +1,98 @@
+app/
+├── Domain/                           # Core business logic (no Laravel dependencies)
+│   ├── User/
+│   │   ├── User.php                  # Eloquent model (allowed but keep light)
+│   │   ├── Repositories/
+│   │   │   └── UserRepositoryInterface.php
+│   │   ├── Services/
+│   │   │   ├── UserRegistrationService.php
+│   │   │   └── UserAuthenticationService.php
+│   │   ├── Events/
+│   │   │   └── UserRegistered.php
+│   │   ├── Exceptions/
+│   │   │   ├── UserNotFoundException.php
+│   │   │   └── DuplicateEmailException.php
+│   │   ├── ValueObjects/
+│   │   │   ├── EmailAddress.php
+│   │   │   └── UserId.php
+│   │   └── Specifications/
+│   │       └── ActiveUserSpecification.php
+│   ├── Order/
+│   │   ├── Order.php
+│   │   ├── Repositories/
+│   │   │   └── OrderRepositoryInterface.php
+│   │   ├── Services/
+│   │   │   └── OrderCalculator.php
+│   │   ├── Events/
+│   │   │   └── OrderPlaced.php
+│   │   ├── ValueObjects/
+│   │   │   └── Money.php
+│   │   └── Specifications/
+│   │       └── DiscountEligibleSpecification.php
+│   └── Shared/                       # Cross‑domain concepts
+│       ├── DomainEvent.php
+│       ├── AggregateRoot.php
+│       └── ValueObject.php
+│
+├── Application/                      # Orchestrates use cases (HTTP, CLI, Jobs)
+│   ├── User/
+│   │   ├── Controllers/
+│   │   │   ├── RegisterUserController.php
+│   │   │   ├── UserProfileController.php
+│   │   │   └── AdminUserController.php
+│   │   ├── Requests/
+│   │   │   ├── RegisterUserRequest.php
+│   │   │   └── UpdateUserRequest.php
+│   │   ├── Resources/
+│   │   │   ├── UserResource.php
+│   │   │   └── UserCollection.php
+│   │   ├── Jobs/
+│   │   │   └── SendWelcomeEmailJob.php
+│   │   ├── Listeners/
+│   │   │   └── SendWelcomeEmailListener.php
+│   │   └── UseCases/
+│   │       ├── RegisterUserUseCase.php
+│   │       └── UpdateUserProfileUseCase.php
+│   └── Order/
+│       ├── Controllers/
+│       │   └── PlaceOrderController.php
+│       ├── Requests/
+│       ├── Resources/
+│       └── UseCases/
+│           └── PlaceOrderUseCase.php
+│
+├── Infrastructure/                   # Concrete implementations of Domain interfaces
+│   ├── Persistence/
+│   │   └── Eloquent/
+│   │       ├── UserRepositoryEloquent.php
+│   │       ├── OrderRepositoryEloquent.php
+│   │       └── Migrations/          # Keep migrations near implementation
+│   │           ├── 2025_01_01_000001_create_users_table.php
+│   │           └── 2025_01_01_000002_create_orders_table.php
+│   ├── Mail/
+│   │   └── WelcomeMail.php
+│   ├── Queues/
+│   │   └── SendWelcomeEmailJob.php  # Concrete queue job
+│   ├── Cache/
+│   │   └── RedisUserCache.php
+│   ├── Events/
+│   │   └── DomainEventDispatcher.php
+│   └── Providers/
+│       ├── UserServiceProvider.php   # Binds interfaces to implementations
+│       └── OrderServiceProvider.php
+│
+├── Http/                             # Keep Laravel's default for global middleware, kernel
+│   ├── Kernel.php
+│   ├── Middleware/
+│   └── ... (no controllers here – they live in Application/)
+│
+├── Console/                          # Custom Artisan commands
+│   ├── Kernel.php
+│   └── Commands/
+│       ├── Users/
+│       │   └── CreateAdminUserCommand.php
+│       └── Orders/
+│           └── ProcessExpiredOrdersCommand.php
+│
+└── Exceptions/                       # Global exception handling
+    └── Handler.php
