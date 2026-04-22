@@ -1,11 +1,11 @@
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.5
+            context: ./vendor/laravel/sail/runtimes/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.5/app
+        image: sail-8.4/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -90,6 +90,19 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    elasticsearch:
+        image: 'elasticsearch:8.17.0'
+        ports:
+            - '${FORWARD_ELASTIC_PORT:-9200}:9200'
+            - '${FORWARD_ELASTIC_NODE_PORT:-9300}:9300'
+        environment:
+            - 'discovery.type=single-node'
+            - 'xpack.security.enabled=false'
+            - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+        volumes:
+            - 'sailelasticsearch:/usr/share/elasticsearch/data'
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
@@ -99,4 +112,6 @@ volumes:
     sail-pgsql:
         driver: local
     sail-redis:
+        driver: local
+    sailelasticsearch:
         driver: local
