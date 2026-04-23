@@ -46,12 +46,20 @@ Shutdown the container
 
     $ sail artisan db:seed
 
+### Demo seeder
+
+    $ sail artisan db:seed --class=DemoProductSeeder
+
 ### Product names
 
 Chair, Car, Computer, Gloves, Pants, Shirt, Table, Shoes, Hat, Plate, Knife, Bottle, Coat, Lamp, Keyboard, Bag, Bench, Clock, Watch, Wallet
 
 
 ### cURL request
+
+Demo
+
+![Demo GIF](./docs/demonstration.gif)
 
 Basic cURL request:
 
