@@ -44,10 +44,6 @@ Shutdown the container
 
     $ sail artisan migrate:fresh
 
-    $ sail artisan db:seed
-
-### Demo seeder
-
     $ sail artisan db:seed --class=DemoProductSeeder
 
 ### Product names
