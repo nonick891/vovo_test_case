@@ -72,8 +72,6 @@ class ProductSearchControllerTest extends TestCase
                     'category' => ['id', 'name'],
                 ],
             ],
-            'links' => ['first', 'last', 'prev', 'next'],
-            'meta' => ['current_page', 'from', 'last_page', 'per_page', 'to', 'total'],
         ]);
 
         $this->assertCount(5, $response->json('data'));

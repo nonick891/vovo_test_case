@@ -34,11 +34,11 @@ class Product extends Model
     public function toSearchableArray(): array
     {
         return [
-            'name'        => $this->name,
-            'price'       => (float) $this->price,
+            'name' => $this->name,
+            'price' => (float)$this->price,
             'category_id' => $this->category_id,
-            'in_stock'    => $this->in_stock,
-            'rating'      => $this->rating,
+            'in_stock' => $this->in_stock,
+            'rating' => $this->rating,
         ];
     }
 

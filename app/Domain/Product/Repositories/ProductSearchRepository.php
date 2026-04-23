@@ -5,7 +5,6 @@ namespace App\Domain\Product\Repositories;
 use App\Application\Product\DTOs\ProductSearchDTO;
 use App\Domain\Product\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Log;
 
 class ProductSearchRepository {
     public function search(ProductSearchDTO $dto) : LengthAwarePaginator
