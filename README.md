@@ -22,7 +22,7 @@
 
 To use a short version of command `./vendor/bin/sail` add next alias in `~/.zshrc` or `~/.bashrc`:
 
-    alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+    alias sail=sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 ### Docker container over laravel sail
 
@@ -45,3 +45,28 @@ Shutdown the container
     $ sail artisan migrate:fresh
 
     $ sail artisan db:seed
+
+### Product names
+
+Chair, Car, Computer, Gloves, Pants, Shirt, Table, Shoes, Hat, Plate, Knife, Bottle, Coat, Lamp, Keyboard, Bag, Bench, Clock, Watch, Wallet
+
+
+### cURL request
+
+Basic cURL request:
+
+    curl -X GET "http://localhost/api/products?q=watch" \                                  
+    -H "Accept: application/json"
+
+Advanced cURL request with filters:
+
+    curl -X GET "http://localhost/api/products?q=watch&price_from=1500&price_to=3500&in_stock=0&sort=price_desc&page_size=4" \
+    -H "Accept: application/json"
+
+JQ exists and installed:
+
+    curl -X GET "http://localhost/api/products?q=watch" \                                  
+    -H "Accept: application/json" | jq
+
+    curl -X GET "http://localhost/api/products?q=watch&price_from=1500&price_to=3500&in_stock=0&sort=price_desc&page_size=4" \
+    -H "Accept: application/json" | jq

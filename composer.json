@@ -9,11 +9,13 @@
         "php": "^8.3",
         "babenkoivan/elastic-scout-driver": "^6.0",
         "elasticsearch/elasticsearch": "^9.3",
+        "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^13.0",
         "laravel/sanctum": "^4.0",
         "laravel/scout": "^11.1",
         "laravel/tinker": "^3.0",
-        "mbezhanov/faker-provider-collection": "^2.0"
+        "mbezhanov/faker-provider-collection": "^2.0",
+        "meilisearch/meilisearch-php": "^1.16"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Unit\Domain\Product;
 
@@ -45,10 +45,8 @@ class ProductSearchServiceTest extends TestCase
 
         $service = new ProductSearchService($repositoryMock);
 
-        // Act
         $result = $service->search($dto);
 
-        // Assert
         $this->assertSame($expectedPaginator, $result);
     }
 
@@ -57,7 +55,6 @@ class ProductSearchServiceTest extends TestCase
      */
     public function test_it_passes_minimal_dto_without_optional_fields(): void
     {
-        // Arrange
         $dto = new ProductSearchDTO(q: 'phone'); // only required fields
 
         $paginatorMock = Mockery::mock(LengthAwarePaginator::class);
@@ -70,10 +67,8 @@ class ProductSearchServiceTest extends TestCase
 
         $service = new ProductSearchService($repositoryMock);
 
-        // Act
         $result = $service->search($dto);
 
-        // Assert
         $this->assertSame($paginatorMock, $result);
     }
 }

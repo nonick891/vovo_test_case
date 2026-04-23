@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\Application\Product\Requests;
 
@@ -13,7 +13,7 @@ class SearchProductsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class SearchProductsRequest extends FormRequest
 
             'sort' => [
                 'nullable',
-                Rule::in(['price_asc', 'price_desc', 'rating_desc', 'newest']),
+                Rule::in(['price_asc', 'price_desc', 'rating_asc', 'rating_desc', 'newest']),
             ],
 
             'page' => 'nullable|integer|min:1',

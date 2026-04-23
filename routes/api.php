@@ -1,7 +1,7 @@
 <?php
 
-use App\Application\Product\Controllers\ProductController;
+use App\Application\Product\Controllers\ProductSearchController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/products', [ProductController::class, 'search']);
+Route::get('/products', [ProductSearchController::class, 'search'])->name('products');
 

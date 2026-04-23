@@ -9,7 +9,7 @@ use App\Application\Product\Resources\ProductResource;
 use App\Domain\Product\Services\ProductSearchService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ProductController extends Controller
+class ProductSearchController extends Controller
 {
 
     public function search(SearchProductsRequest $request, ProductSearchService $service): AnonymousResourceCollection
@@ -18,7 +18,7 @@ class ProductController extends Controller
 
         $paginator = $service->search($dto);
 
-        return ProductResource::collection($paginator);
+        return ProductResource::collection($paginator->items());
     }
 
 }

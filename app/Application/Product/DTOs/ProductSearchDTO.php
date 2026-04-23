@@ -1,4 +1,5 @@
-<?php namespace App\Application\Product\DTOs;
+<?php declare(strict_types=1);
+namespace App\Application\Product\DTOs;
 
 use App\Application\Product\Requests\SearchProductsRequest;
 
