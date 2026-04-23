@@ -28,6 +28,6 @@ class DemoProductSeeder extends Seeder
 
         Product::makeAllSearchable();
 
-        $this->command->info('Demo categories and products created and indexed in Elasticsearch!');
+        $this->command->info('Demo categories and products created');
     }
 }

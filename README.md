@@ -8,6 +8,8 @@
 
     $ composer install
 
+    $ cp .env.example .env
+
 # Local development
 
 ### Installation
