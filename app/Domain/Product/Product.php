@@ -37,6 +37,7 @@ class Product extends Model
             'name'        => $this->name,
             'price'       => (float) $this->price,
             'category_id' => $this->category_id,
+            'category_name' => $this->category?->name,
             'in_stock'    => $this->in_stock,
             'rating'      => $this->rating,
         ];

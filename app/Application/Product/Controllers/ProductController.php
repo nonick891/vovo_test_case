@@ -2,46 +2,23 @@
 
 namespace App\Application\Product\Controllers;
 
-use app\Application\Product\Requests\SearchProductsRequest;
-use app\Domain\Product\Product;
-use App\Http\Controllers\Controller;
+use App\Application\Controller;
+use App\Application\Product\DTOs\ProductSearchDTO;
+use App\Application\Product\Requests\SearchProductsRequest;
+use App\Application\Product\Resources\ProductResource;
+use App\Domain\Product\Services\ProductSearchService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function search(SearchProductsRequest $request, ProductSearchService $service): AnonymousResourceCollection
     {
-        //
+        $dto = ProductSearchDTO::fromRequest($request);
+
+        $paginator = $service->search($dto);
+
+        return ProductResource::collection($paginator);
     }
 
-    public function search(SearchProductsRequest $request)
-    {
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-        //
-    }
 }
